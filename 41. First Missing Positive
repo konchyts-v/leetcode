@@ -1,0 +1,9 @@
+# https://leetcode.com/problems/first-missing-positive/
+class Solution:
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        set_nums = set(nums)
+        
+        for i in range(1, len(nums) + 1):
+            if i not in set_nums:
+                return i
+        return len(nums) + 1

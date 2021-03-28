@@ -1,0 +1,17 @@
+# https://leetcode.com/problems/maximum-score-after-splitting-a-string/
+class Solution:
+    def maxScore(self, s: str) -> int:
+        max_sum = 0
+        len_s = len(s)
+        for i in range(len_s - 1):
+            _sum = 0
+            for left_index in range(i + 1):
+                if s[left_index] == "0":
+                    _sum += 1
+            for right_index in range(i + 1, len_s):
+                if s[right_index] == "1":
+                    _sum += 1
+            if _sum > max_sum:
+                max_sum = _sum
+                
+        return max_sum

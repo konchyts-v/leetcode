@@ -1,0 +1,21 @@
+# https://leetcode.com/problems/least-number-of-unique-integers-after-k-removals/
+class Solution:
+    def findLeastNumOfUniqueInts(self, arr: List[int], count: int) -> int:
+        number_count_map = {}
+        for n in arr:
+            number_count_map[n] = number_count_map.get(n, 0) + 1
+
+        len_elements = len(number_count_map)
+        sorted_d_items = sorted(number_count_map.items(), key=lambda item: item[1])
+        
+        it = 0
+        for i in range(count):
+            k, v = sorted_d_items[it]
+            if v == 1:
+                len_elements -= 1
+                it += 1
+            else:
+                sorted_d_items[it] = (k, v - 1)
+
+
+        return len_elements

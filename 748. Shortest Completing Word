@@ -1,0 +1,16 @@
+# https://leetcode.com/problems/shortest-completing-word/
+class Solution:
+    def shortestCompletingWord(self, licensePlate: str, words: List[str]) -> str:
+        licensePlate = "".join((x for x in licensePlate.lower() if x not in {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", " "}))
+        words.sort(key=lambda x: len(x))
+        for word in words:
+            mapper = set()
+            mapper_origin = set()
+            for i_o, license_char in enumerate(licensePlate):
+                for i, c in enumerate(word):
+                    if license_char == c and i not in mapper and i_o not in mapper_origin:
+                        mapper.add(i)
+                        mapper_origin.add(i_o)
+                    
+            if len(mapper) == len(licensePlate):
+                return word

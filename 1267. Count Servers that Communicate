@@ -1,0 +1,35 @@
+# https://leetcode.com/problems/count-servers-that-communicate/
+class Solution:
+    def countServers(self, grid: List[List[int]]) -> int:
+        computers_in_column_count = dict()
+        sum_ = 0
+        rows_number = len(grid)
+        columns_number = len(grid[0])
+        
+        for i in range(rows_number):
+            computer_columns = []
+            row_sum = 0
+            for j in range(columns_number):
+                if grid[i][j] == 1:
+                    row_sum += 1
+                    computer_columns.append(j)
+            if row_sum > 1:
+                sum_ += row_sum
+                for column in computer_columns:
+                    if column not in computers_in_column_count:
+                        computers_in_column_count[column] = 1
+                    else:
+                        computers_in_column_count[column] += 1
+                        
+        
+        for j in range(columns_number):
+            column_sum = 0
+            for i in range(rows_number):
+                if grid[i][j] == 1:
+                    column_sum += 1
+            
+            if column_sum > 1:
+                column_sum = column_sum - computers_in_column_count.get(j, 0)
+                sum_ += column_sum
+                
+        return sum_

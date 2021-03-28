@@ -1,0 +1,11 @@
+# https://leetcode.com/problems/reach-a-number/
+class Solution:
+    def reachNumber(self, target: int) -> int:
+        target = abs(target)
+        ans = 0
+        sum_ = 0
+        while sum_ < target or (sum_ - target) % 2 != 0:
+            ans += 1
+            sum_ += ans
+
+        return ans

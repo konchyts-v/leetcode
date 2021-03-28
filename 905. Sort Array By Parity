@@ -1,0 +1,14 @@
+# https://leetcode.com/problems/sort-array-by-parity/
+class Solution:
+    def sortArrayByParity(self, A: List[int]) -> List[int]:
+        even_elements = []
+        odd_elements = []
+        
+        for number in A:
+            if number % 2 == 0:
+                even_elements.append(number)
+            else:
+                odd_elements.append(number)
+        
+        even_elements.extend(odd_elements)
+        return even_elements

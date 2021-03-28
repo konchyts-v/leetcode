@@ -1,0 +1,20 @@
+# https://leetcode.com/problems/hamming-distance/
+#define FORi(i, a, b) for(int i = a; i < b; ++i)
+#define FORd(i, a, b) for(int i = a; i > b; --i)
+
+class Solution {
+public:
+    int hammingDistance(int x, int y) {
+        int ans = 0;
+        string binary_x = bitset<32>(x).to_string();
+        string binary_y = bitset<32>(y).to_string();
+        
+        FORi(i, 0, binary_x.size()) {
+            if(binary_x[i] != binary_y[i]) {
+                ans += 1;
+            }
+        }
+        
+        return ans;
+    }
+};
